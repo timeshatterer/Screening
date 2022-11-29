@@ -1,9 +1,9 @@
------------
-Tracing SCF
------------
+
+# Tracing SCF
 
 
----------------------------------------------------------------------------------------------------------------------
+
+
 how to Tracing SCF lattice Parameter.
 let's say we've literature(lattice parameters) for our material to screening around it.
 for example the material, FeS-194 material that we will use here.
@@ -91,11 +91,9 @@ for i in range(330,351):
 ```
 that code will produce input file and command line for submit file.
 441 files and command lines were generated from 3.3 Armstrong to 3.5 Amstrong and 5.5 Amstrong to 5.7 Amstrong with intervals of 0.01 Amstrong.
----------------------------------------------------------------------------------------------------------------------
-.
+
 so we can run it easily with this code.
-.
-------------------------------------------------------------------------------
+
 after get 441 output use this code to represent the countour of that 441 file output
 
 ```python:
@@ -125,4 +123,3 @@ plt.show()
 
 that code will produce countour as below
 ![Alt text](SCFlatticeparameters.png?raw=true "The countour")
-------------------------------------------------------------------------------
