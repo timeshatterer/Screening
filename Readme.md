@@ -209,7 +209,7 @@ that code will produce input file and command line for submit file.
 40 files and command lines were generated energy cutt off input from 4 to 160 (wavefunction) and 32 to 1280(rho) with intervals 4(wavefunction) and 32(rho).
 after that you can easily turn to the graph.
 
-![Alt text](Chart1.crtx?raw=true "ecut graph") 
+![Alt text](Chart1.png?raw=true "ecut graph") 
 
 
 ### you can download the file from here:
