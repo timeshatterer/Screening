@@ -307,3 +307,11 @@ https://gist.github.com/timeshatterer/98b4e99f5e48f7e8df90ed1a336eeed7
 plot countour
 
 https://gist.github.com/timeshatterer/9a0568120786f85d247a5e8224d0afce
+
+input QE ecut
+
+https://gist.github.com/timeshatterer/4b39aae7735fb3101278c59b4f8b0dfe
+
+input QE kpoints
+
+https://gist.github.com/timeshatterer/c332c85f8430508b4858c5e784e67aba
