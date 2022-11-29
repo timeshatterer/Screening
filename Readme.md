@@ -211,6 +211,92 @@ after that you can easily turn to the graph.
 
 ![Alt text](Chart1.png?raw=true "ecut graph") 
 
+## Tracing Energy K-points
+
+how to Tracing SCF K-points.
+for K-points, this can determine the precision in the grid, but also must consider the computational cost and ease of expansion to supercell.
+Screening calculations require quite a lot of input, so to make things easier, you can use the code below
+
+```python:
+def text(i):
+    text_file = open("%.0f,%.0f,%.0fFeS-scf.in" % (2*i, 2*i, i), "w")
+    text_file.write("""&CONTROL
+    calculation='scf',
+    etot_conv_thr = 1.0d-4,
+    forc_conv_thr = 1.0d-3,
+    nstep = 100,
+    !max_seconds = 3500,
+    prefix='FeS-194-AFM',
+    pseudo_dir='./',
+    outdir='./tmp',
+    verbosity='high'
+    !restart_mode='restart'
+/
+
+&SYSTEM    
+    ibrav = 4,
+    A = 3.37509062,
+    C = 5.63214115,
+    cosAB = -0.50,
+    nat =  4,
+    ntyp = 3,
+    nspin= 2,
+    ecutwfc = 80.0,
+    ecutrho = 640.0
+    starting_magnetization(1) =  0.5,
+    starting_magnetization(2) = -0.5,
+    input_dft = 'vdw-df2-b86r',
+    occupations = 'smearing',
+    smearing = 'gauss',
+    degauss = 0.01
+/
+
+&ELECTRONS
+    startingwfc = 'atomic+random'
+    diagonalization = 'cg',
+    mixing_beta = 0.7,
+    conv_thr = 1.0d-9,
+    electron_maxstep = 2000
+/
+
+&IONS
+    ion_dynamics = 'bfgs'
+/
+
+&CELL
+    cell_dynamics = 'bfgs'
+/     
+
+ATOMIC_SPECIES
+    Fe1  55.845 Fe.pbe-spn-rrkjus_psl.1.0.0.UPF
+    Fe2  55.845 Fe.pbe-spn-rrkjus_psl.1.0.0.UPF
+    S    32.06  S.pbe-n-rrkjus_psl.1.0.0.UPF
+
+ATOMIC_POSITIONS {crystall}
+Fe1   0.00000   0.00000   0.00000 0 0 0
+Fe2   0.00000   0.00000   0.50000
+S     0.33333   0.66667   0.75000
+S     0.66667   0.33333   0.25000
+
+K_POINTS automatic
+    %.0f %.0f %.0f    1 1 1
+""" % (2*i, 2*i, i))
+
+    text_file.close()
+
+
+for i in range(1, 19):
+    text(i)
+    # few code on file.sh
+    print("mpiexec.hydra -n $NUM_PROCS ./pw.x -ndiag 1 -inp  %.0f,%.0f,%.0fFeS-scf.in > %.0f,%.0f,%.0fFeS-scf.out" % (2*i, 2*i, i, 2*i, 2*i, i))
+
+```
+that code will produce input file and command line for submit file.
+18 files and command lines were generated energy cutt off input from 1 to 18 (k in kpoints) and 2 to 36(i an j in kpoints with interval 2).
+after that you can easily turn to the graph.
+
+![Alt text](Chart2.png?raw=true "kpoints graph") 
+
 
 ### you can download the file from here:
 
