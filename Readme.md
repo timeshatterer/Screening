@@ -1,13 +1,13 @@
 
 # Tracing SCF
 
-
+## Lattice Parameter
 
 
 how to Tracing SCF lattice Parameter.
 let's say we've literature(lattice parameters) for our material to screening around it.
 for example the material, FeS-194 material that we will use here.
-if you dont have the literature or previous work you can visit materialproject.com to get it.
+if you dont have the literature or previous work you can visit materialproject.org to get it.
 Screening calculations require quite a lot of input, so to make things easier, you can use the code below
 
 ```python:
@@ -94,17 +94,17 @@ that code will produce input file and command line for submit file.
 
 so we can run it easily with this code.
 
-after get 441 output use this code to represent the countour of that 441 file output
+after get 441 output
+put yout data into excel
+and use this code to represent the countour of that 441 file output
 
 ```python:
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-
 df=pd.read_excel('datanya nih.xlsx', sheet_name='Lembar4')
 a=df.values.tolist()
-
 c=np.transpose(a)
 xlist = np.linspace(3.3, 3.5, 21)
 ylist = np.linspace(5.5, 5.7, 21)
@@ -123,3 +123,9 @@ plt.show()
 
 that code will produce countour as below
 ![Alt text](SCFlatticeparameters.png?raw=true "The countour")
+
+
+input QE lattice parameter
+https://gist.github.com/timeshatterer/98b4e99f5e48f7e8df90ed1a336eeed7
+plot countour
+https://gist.github.com/timeshatterer/9a0568120786f85d247a5e8224d0afce
